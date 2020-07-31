@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import Messages from './components/Messages';
 import Input from './components/Input';
+require('dotenv').config();
 
 
-
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 function randomName() {
   const adjectives = ["autumn", "hidden", "bitter", "misty", "silent", "empty", "dry", "dark", "summer", "icy", "delicate", "quiet", "white", "cool", "spring", "winter", "patient", "twilight", "dawn", "crimson", "wispy", "weathered", "blue", "billowing", "broken", "cold", "damp", "falling", "frosty", "green", "long", "late", "lingering", "bold", "little", "morning", "muddy", "old", "red", "rough", "still", "small", "sparkling", "throbbing", "shy", "wandering", "withered", "wild", "black", "young", "holy", "solitary", "fragrant", "aged", "snowy", "proud", "floral", "restless", "divine", "polished", "ancient", "purple", "lively", "nameless"];
@@ -37,9 +38,10 @@ class App extends Component {
   }
 
 
-  constructor() {
-    super();
-    this.drone = new window.Scaledrone("zHnEdYLyYOoxbSIS", {
+
+
+  componentDidMount() {
+    this.drone = new window.Scaledrone(API_KEY, {
       data: this.state.member
     });
     this.drone.on('open', error => {
